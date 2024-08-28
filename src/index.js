@@ -82,9 +82,9 @@ var parseMetadata = metadata => {
                 return;
             }
 
-            const series = measures.map(measure => ({
+            const seriesData = measures.map(measure => ({
                 name: measure.label,
-                data: [data[0][measure.key].raw],
+                data: [data[0][measure.key].raw], 
                 tooltip: {
                     valueSuffix: '%'
                 }
@@ -148,7 +148,7 @@ var parseMetadata = metadata => {
                         }
                     }
                 },
-                series
+                series: seriesData
             }
 
             this._chart = Highcharts.chart(this.shadowRoot.getElementById('container'), chartOptions);
