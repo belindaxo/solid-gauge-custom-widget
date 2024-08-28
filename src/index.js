@@ -22,6 +22,10 @@ var parseMetadata = metadata => {
     return { dimensions, measures, dimensionsMap, measuresMap };
 }
 
+const parseValue = (value, min, max) => {
+    return Math.max(0, Math.min(1, (value - min) / (max - min)));
+}
+
 (function() {
     class SolidGauge extends HTMLElement {
         constructor() {
@@ -74,31 +78,22 @@ var parseMetadata = metadata => {
 
             const { data, metadata } = dataBinding;
             const { measures } = parseMetadata(metadata);
-            if (!measures.length) {
-                if (this._chart) {
-                    this._chart.destroy();
-                    this._chart = null;
-                }
-                return;
-            }
+            if (!measures.length) return;
 
-            const seriesData = measures.map(measure => ({
-                name: measure.label,
-                data: [data[0][measure.key].raw], 
-                tooltip: {
-                    valueSuffix: '%'
-                }
-            }));
+
 
             const minValue = parseFloat(this.minValue) || 0;
             const maxValue = parseFloat(this.maxValue) || 100;
             const flipGauge = this.flipGauge === 'true';
 
-            const thresholds =[
-                [minValue, this.threshold1 ? parseFloat(this.threshold1): minValue + (maxValue - minValue) * 0.33, flipGauge ? '#DF5353' : '#55BF3B'], // red/green
-                [this.threshold1 ? parseFloat(this.threshold1): minValue + (maxValue - minValue) * 0.33, this.threshold2 ? parseFloat(this.threshold2): minValue + (maxValue - minValue) * 0.66, '#DDDF0D'], // yellow
-                [this.threshold2 ? parseFloat(this.threshold2): minValue + (maxValue - minValue) * 0.66, maxValue, flipGauge ? '#55BF3B' : '#DF5353'] // green/red
-            ]
+            const thresholds = [
+                [minValue, this.threshold1 ? parseFloat(this.threshold1) : minValue + (maxValue - minValue) * 0.33, flipGauge ? '#DF5353' : '#55BF3B'], // red/green
+                [this.threshold1 ? parseFloat(this.threshold1) : minValue + (maxValue - minValue) * 0.33, this.threshold2 ? parseFloat(this.threshold2) : minValue + (maxValue - minValue) * 0.66, '#DDDF0D'], // yellow
+                [this.threshold2 ? parseFloat(this.threshold2) : minValue + (maxValue - minValue) * 0.66, maxValue, flipGauge ? '#55BF3B' : '#DF5353'] // green/red
+            ];
+
+            const rawValue = data[0][measures[0].key].raw;
+            const value = parseValue(rawValue, minValue, maxValue);
 
             const chartOptions = {
                 chart: {
@@ -148,7 +143,13 @@ var parseMetadata = metadata => {
                         }
                     }
                 },
-                series: seriesData
+                series: [{
+                    name: measures[0].label,
+                    data: [value * 100],
+                    tooltip: {
+                        valueSuffix: '%'
+                    }
+                }]
             }
 
             this._chart = Highcharts.chart(this.shadowRoot.getElementById('container'), chartOptions);
