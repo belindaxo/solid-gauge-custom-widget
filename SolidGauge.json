@@ -1,0 +1,141 @@
+{
+    "name": "Solid Gauge",
+    "description": "A solid gauge chart with data binding support",
+    "eula": "",
+    "vendor": "",
+    "license": "",
+    "id": "com.sap.sample.solidgauge",
+    "newInstancePrefix": "SolidGauge",
+    "version": "0.0.1",
+    "supportsLinkedAnalysisFilterOnSelection": true,
+    "webcomponents": [
+        {
+            "kind": "main",
+            "tag": "com-sap-sample-solidgauge",
+            "url": "https://belindaxo.github.io/solid-gauge-custom-widget/dist/bundle.js",
+            "integrity": "",
+            "ignoreIntegrity": true
+        },
+        {
+            "kind": "styling",
+            "tag": "com-sap-sample-solidgauge-aps",
+            "url": "https://belindaxo.github.io/solid-gauge-custom-widget/dist/bundle.js",
+            "integrity": "",
+            "ignoreIntegrity": true
+        }
+    ],
+    "properties": {
+        "width": {
+            "type": "integer",
+            "default": 600
+        },
+        "height": {
+            "type": "integer",
+            "default": 400
+        },
+        "minValue": {
+            "type": "integer",
+            "description": "The minimum value of the gauge",
+            "default": 0
+        },
+        "maxValue": {
+            "type": "integer",
+            "description": "The maximum value of the gauge",
+            "default": 100
+        },
+        "flipGauge": {
+            "type": "boolean",
+            "description": "Whether to flip the gauge",
+            "default": false
+        },
+        "threshold1": {
+            "type": "integer",
+            "description": "The value of the first threshold",
+            "default": 33
+        },
+        "threshold2": {
+            "type": "integer",
+            "description": "The value of the second threshold",
+            "default": 66
+        },
+        "threshold3": {
+            "type": "integer",
+            "description": "The value of the third threshold",
+            "default": 100
+        },
+        "chartTitle": {
+            "type": "string",
+            "description": "The title of the chart",
+            "default": ""
+        },
+        "titleSize": {
+            "type": "string",
+            "description": "The font size of the title text",
+            "default": "20px"
+        },
+        "titleFontStyle": {
+            "type": "string",
+            "description": "The font style of the title text",
+            "default": "bold"
+        },
+        "titleAlignment": {
+            "type": "string",
+            "description": "The alignment of the title text",
+            "default": "center"
+        },
+        "titleColor": {
+            "type": "string",
+            "description": "The color of the title text",
+            "default": "#333333"
+        },
+        "chartSubtitle": {
+            "type": "string",
+            "description": "The subtitle of the chart",
+            "default": ""
+        },
+        "subtitleSize": {
+            "type": "string",
+            "description": "The font size of the subtitle text",
+            "default": "12px"
+        },
+        "subtitleFontStyle": {
+            "type": "string",
+            "description": "The font style of the subtitle text",
+            "default": "normal"
+        },
+        "subtitleAlignment": {
+            "type": "string",
+            "description": "The alignment of the subtitle text",
+            "default": "center"
+        },
+        "subtitleColor": {
+            "type": "string",
+            "description": "The color of the subtitle text",
+            "default": "#666666"
+        }
+
+    },
+    "methods": {
+
+    },
+    "events": {
+
+    },
+    "dataBindings": {
+        "dataBinding": {
+            "feeds": [
+                {
+                    "id": "dimensions",
+                    "description": "Dimensions",
+                    "type": "dimension"
+                },
+                {
+                    "id": "measures",
+                    "description": "Measures",
+                    "type": "mainStructureMember"
+                }
+            ]
+        }
+    }
+
+}

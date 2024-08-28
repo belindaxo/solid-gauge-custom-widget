@@ -100,6 +100,141 @@ const chartSpeed = Highcharts.chart(
         }]
 
     }));
-    </script>
+</script>
+<body>
+    <form id="form">
+        <legend style="font-weight: bold;font-size: 18px;">Gauge Settings</legend>
+        <table>
+            <tr>
+                <td>Minimum Value</td>
+                <td><input id="minValue" type="number" value="0"></td>
+            </tr>
+            <tr>
+                <td>Maximum Value</td>
+                <td><input id="maxValue" type="number" value="100"></td>
+            </tr>
+            <tr>
+                <td>Flip Gauge</td>
+                <td><input id="flipGauge" type="checkbox"></td>
+            </tr>
+        </table>
+        <legend style="font-weight: bold;font-size: 18px;">Thresholds</legend>
+        <table>
+            <tr>
+                <td>Threshold 1 (Low to Mid)</td>
+                <td><input id="threshold1" type="number" value="33"></td>
+            </tr>
+            <tr>
+                <td>Threshold 2 (Mid to High)</td>
+                <td><input id="threshold2" type="number" value="66"></td>
+            </tr>
+            <tr>
+                <td>Threshold 3 (High)</td>
+                <td><input id="threshold3" type="number" value="100"></td>
+            </tr>
+        </table>
+        <legend style="font-weight: bold;font-size: 18px;"> Font </legend>
+        <table>
+            <tr>
+                <td>Chart Title</td>
+            </tr>
+            <tr>
+                <td><input id="chartTitle" type="text"></td>
+            </tr>
+            <tr>
+                <table>
+                    <tr>
+                        <td>Size</td>
+                        <td>Font Style</td>
+                        <td>Alignment</td>
+                        <td>Color</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select id="titleSize">
+                                <option value="10px">10</option>
+                                <option value="12px">12</option>
+                                <option value="14px">14</option>
+                                <option value="16px">16</option>
+                                <option value="18px" selected>18</option>
+                                <option value="20px">20</option>
+                                <option value="22px">22</option>
+                                <option value="24px">24</option>
+                                <option value="32px">32</option>
+                                <option value="48px">48</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select id="titleFontStyle">
+                                <option value="normal">Normal</option>
+                                <option value="bold" selected>Bold</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select id="titleAlignment">
+                                <option value="left">Left</option>
+                                <option value="center" selected>Center</option>
+                                <option value="right">Right</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input id="titleColor" type="color" value="#333333">
+                        </td>
+                    </tr>
+                </table>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td>Chart Subtitle</td>
+            </tr>
+            <tr>
+                <td><input id="chartSubtitle" type="text"></td>
+            </tr>
+            <tr>
+                <table>
+                    <tr>
+                        <td>Size</td>
+                        <td>Font Style</td>
+                        <td>Alignment</td>
+                        <td>Color</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select id="subtitleSize">
+                                <option value="10px">10</option>
+                                <option value="12px" selected>12</option>
+                                <option value="14px">14</option>
+                                <option value="16px">16</option>
+                                <option value="18px">18</option>
+                                <option value="20px">20</option>
+                                <option value="22px">22</option>
+                                <option value="24px">24</option>
+                                <option value="32px">32</option>
+                                <option value="48px">48</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select id="subtitleFontStyle">
+                                <option value="normal" selected>Normal</option>
+                                <option value="italic">Italic</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select id="subtitleAlignment">
+                                <option value="left">Left</option>
+                                <option value="center" selected>Center</option>
+                                <option value="right">Right</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input id="subtitleColor" type="color" value="#666666">
+                        </td>
+                    </tr>
+                </table>
+            </tr>
+        </table>
+        <input type="submit" style="display:none;">
+    </form>
 </body>
 </html>
