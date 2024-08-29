@@ -57,8 +57,6 @@ SolidGauge(Highcharts);
             const { data, metadata } = dataBinding;
             const { dimensions, measures } = parseMetadata(metadata);
 
-            const min = -1;
-            const max = 1;
 
             const categoryData = [];
 
@@ -108,8 +106,8 @@ SolidGauge(Highcharts);
                     enabled: false
                 },
                 yAxis: {
-                    min: min,
-                    max: max,
+                    min: -100,
+                    max: 100,
                     stops: [
                         [0.1, '#DF5353'], // red
                         [0.5, '#DDDF0D'], // yellow
@@ -142,4 +140,4 @@ SolidGauge(Highcharts);
         }
     }
     customElements.define('com-sap-sample-solidgauge', SolidGauge);
-})
+})();
