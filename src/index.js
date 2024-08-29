@@ -120,7 +120,7 @@ const parseMetadata = metadata => {
                         y: -70
                     },
                     labels: {
-                        y: 16
+                        enabled: false
                     }
                 },
                 plotOptions: {
