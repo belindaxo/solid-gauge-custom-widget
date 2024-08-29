@@ -68,7 +68,7 @@ const parseMetadata = metadata => {
                     dataLabels: {
                         format: 
                         '<div style="text-align:center">' +
-                        '<span style="font-size:25px">{y}%</span><br/>'
+                        '<span style="font-size:25px">{y:.0f}%</span><br/>'
                     },
                     type: 'solidgauge'
                 }
