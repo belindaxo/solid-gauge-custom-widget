@@ -105,8 +105,8 @@ const parseMetadata = metadata => {
                     enabled: false
                 },
                 yAxis: {
-                    min: -100,
-                    max: 100,
+                    min: -1,
+                    max: 1,
                     stops: [
                         [0.1, '#DF5353'], // red
                         [0.5, '#DDDF0D'], // yellow
