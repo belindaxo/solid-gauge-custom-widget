@@ -14,6 +14,13 @@
             "url": "https://belindaxo.github.io/solid-gauge-custom-widget/dist/bundle.js",
             "integrity": "",
             "ignoreIntegrity": true
+        },
+        {
+            "kind": "styling",
+            "tag": "com-sap-sample-solidgauge-aps",
+            "url": "https://belindaxo.github.io/solid-gauge-custom-widget/dist/bundle.js",
+            "integrity": "",
+            "ignoreIntegrity": true
         }
     ],
     "properties": {
@@ -24,6 +31,26 @@
         "height": {
             "type": "integer",
             "default": 400
+        },
+        "minValue": {
+            "type": "number",
+            "default": -1
+        },
+        "maxValue": {
+            "type": "number",
+            "default": 1
+        },
+        "stop1": {
+            "type": "number",
+            "default": 0.1
+        },
+        "stop2": {
+            "type": "number",
+            "default": 0.5
+        },
+        "stop3": {
+            "type": "number",
+            "default": 0.9
         }
     },
     "methods": {

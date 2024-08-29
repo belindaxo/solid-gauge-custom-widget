@@ -46,6 +46,19 @@ const parseMetadata = metadata => {
             }
         }
 
+        static get observedAttributes() {
+            return [
+                'minValue', 'maxValue', 'stop1', 'stop2', 'stop3'
+            ];
+        }
+
+        attributeChangedCallback(name, oldValue, newValue) {
+            if (oldValue !== newValue) {
+                this[name] = newValue;
+                this._renderChart();
+            }
+        }
+
         _renderChart() {
             const dataBinding = this.dataBinding;
 
@@ -105,12 +118,12 @@ const parseMetadata = metadata => {
                     enabled: false
                 },
                 yAxis: {
-                    min: -1,
-                    max: 1,
+                    min: parseFloat(this.minValue) || -1,
+                    max: parseFloat(this.maxValue) || 1,
                     stops: [
-                        [0.1, '#DF5353'], // red
-                        [0.5, '#DDDF0D'], // yellow
-                        [0.9, '#55BF3B'] // green
+                        [parseFloat(this.stop1) || 0.1, '#DF5353'], // red
+                        [parseFloat(this.stop2) || 0.5, '#DDDF0D'], // yellow
+                        [parseFloat(this.stop3) || 0.9, '#55BF3B'] // green
                     ],
                     lineWidth: 0,
                     tickWidth: 0,
