@@ -67,7 +67,7 @@ const parseMetadata = metadata => {
                     key: measure.key,
                     dataLabels: {
                         formatter: function() {
-                            return Highcharts.numberFormat(this.y * 100, 1) + '%';
+                            return '<span style="font-size:25px">' + Highcharts.numberFormat(this.y * 100, 1) + '%' + '</span>';
                         }
                     },
                     type: 'solidgauge'
