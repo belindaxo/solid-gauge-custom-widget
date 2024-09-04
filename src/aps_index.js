@@ -32,9 +32,9 @@
     class SolidGaugeAps extends HTMLElement {
         constructor() {
             super();
-            this.attachShadow({ mode: 'open' });
-            this.shadowRoot.appendChild(template.content.cloneNode(true));
-            this.shadowRoot.getElementById('form').addEventListener('submit', this._submit.bind(this));
+            this._shadowRoot = this.attachShadow({ mode: 'open' });
+            this._shadowRoot.appendChild(template.content.cloneNode(true));
+            this._shadowRoot.getElementById('form').addEventListener('submit', this._submit.bind(this));
         }
 
         _submit(e) {
