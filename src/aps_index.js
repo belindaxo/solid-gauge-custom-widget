@@ -34,7 +34,7 @@
             super();
             this.attachShadow({ mode: 'open' });
             this.shadowRoot.appendChild(template.content.cloneNode(true));
-            this._shadowRoot.getElementById('form').addEventListener('submit', this._submit.bind(this));
+            this.shadowRoot.getElementById('form').addEventListener('submit', this._submit.bind(this));
         }
 
         _submit(e) {
