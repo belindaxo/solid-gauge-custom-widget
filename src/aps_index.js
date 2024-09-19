@@ -75,6 +75,10 @@
                 <td>Stop 3 (High to Max)</td>
                 <td><input id="stop3" type="number" step="0.01" value="0.9"></td>
             </tr>
+            <tr>
+                <td>Target Indicator Value</td>
+                <td><input id="targetValue" type="number" step="0.01" value="0"></td>
+            </tr>
         </table>
         <input type="submit" style="display:none;">
         </form>
@@ -106,7 +110,8 @@
                         maxValue: this.maxValue,
                         stop1: this.stop1,
                         stop2: this.stop2,
-                        stop3: this.stop3
+                        stop3: this.stop3,
+                        targetValue: this.targetValue
                     }
                 }
             }));
@@ -190,6 +195,14 @@
 
         set stop3(value) {
             this._shadowRoot.getElementById('stop3').value = value;
+        }
+
+        get targetValue() {
+            return this._shadowRoot.getElementById('targetValue').value;
+        }
+
+        set targetValue(value) {
+            this._shadowRoot.getElementById('targetValue').value = value;
         }
     }
     customElements.define('com-sap-sample-solidgauge-aps', SolidGaugeAps);

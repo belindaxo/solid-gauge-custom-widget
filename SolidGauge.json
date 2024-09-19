@@ -78,6 +78,11 @@
         "stop3": {
             "type": "number",
             "default": 0.9
+        },
+        "targetValue": {
+            "type": "number",
+            "description": "The target value of the gauge",
+            "default": 0
         }
     },
     "methods": {

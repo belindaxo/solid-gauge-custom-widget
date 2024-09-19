@@ -49,7 +49,7 @@ const parseMetadata = metadata => {
         static get observedAttributes() {
             return [
                 'chartTitle', 'titleSize', 'titleFontStyle', 'titleAlignment', 'titleColor',    // Title Properties
-                'minValue', 'maxValue', 'stop1', 'stop2', 'stop3'                               // Gauge Properties
+                'minValue', 'maxValue', 'stop1', 'stop2', 'stop3', 'targetValue'                // Gauge Properties
             ];
         }
 
@@ -141,7 +141,7 @@ const parseMetadata = metadata => {
                     tickWidth: 0,
                     minorTickInterval: null,
                     tickAmount: 2,
-                    tickPositions: [0.50],
+                    tickPositions: [this.targetValue] || [0],
                     tickWidth: 3,
                     tickLength: 105,
                     title: {
