@@ -141,6 +141,9 @@ const parseMetadata = metadata => {
                     tickWidth: 0,
                     minorTickInterval: null,
                     tickAmount: 2,
+                    tickPositions: [0.50],
+                    tickWidth: 3,
+                    tickLength: 105,
                     title: {
                         y: -70
                     },
