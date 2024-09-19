@@ -48,7 +48,8 @@ const parseMetadata = metadata => {
 
         static get observedAttributes() {
             return [
-                'minValue', 'maxValue', 'stop1', 'stop2', 'stop3'
+                'chartTitle', 'titleSize', 'titleFontStyle', 'titleAlignment', 'titleColor',    // Title Properties
+                'minValue', 'maxValue', 'stop1', 'stop2', 'stop3'                               // Gauge Properties
             ];
         }
 
@@ -100,7 +101,15 @@ const parseMetadata = metadata => {
                 chart: {
                     type: 'solidgauge',
                 },
-                title: null,
+                title: {
+                    text: this.chartTitle || "",
+                    align: this.titleAlignment || "left",
+                    style: {
+                        fontSize: this.titleSize || "18px",
+                        fontStyle: this.titleFontStyle || "bold",
+                        color: this.titleColor || "#333333"
+                    }
+                },
                 pane: {
                     center: ['50%', '85%'],
                     size: '140%',
@@ -115,6 +124,9 @@ const parseMetadata = metadata => {
                     }
                 },
                 tooltip: {
+                    enabled: false
+                },
+                exporting: {
                     enabled: false
                 },
                 yAxis: {
