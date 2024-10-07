@@ -46,6 +46,20 @@ const parseMetadata = metadata => {
             }
         }
 
+        static get observedAttributes() {
+            return [
+                'chartTitle', 'titleSize', 'titleFontStyle', 'titleAlignment', 'titleColor',    // Title Properties
+                'minValue', 'maxValue', 'stop1', 'stop2', 'stop3', 'targetValue'                // Gauge Properties
+            ];
+        }
+
+        attributeChangedCallback(name, oldValue, newValue) {
+            if (oldValue !== newValue) {
+                this[name] = newValue;
+                this._renderChart();
+            }
+        }
+
         _renderChart() {
             const dataBinding = this.dataBinding;
 
@@ -87,7 +101,15 @@ const parseMetadata = metadata => {
                 chart: {
                     type: 'solidgauge',
                 },
-                title: null,
+                title: {
+                    text: this.chartTitle || "",
+                    align: this.titleAlignment || "left",
+                    style: {
+                        fontSize: this.titleSize || "18px",
+                        fontStyle: this.titleFontStyle || "bold",
+                        color: this.titleColor || "#333333"
+                    }
+                },
                 pane: {
                     center: ['50%', '85%'],
                     size: '140%',
@@ -104,18 +126,24 @@ const parseMetadata = metadata => {
                 tooltip: {
                     enabled: false
                 },
+                exporting: {
+                    enabled: false
+                },
                 yAxis: {
-                    min: -1,
-                    max: 1,
+                    min: parseFloat(this.minValue) || -1,
+                    max: parseFloat(this.maxValue) || 1,
                     stops: [
-                        [0.1, '#DF5353'], // red
-                        [0.5, '#DDDF0D'], // yellow
-                        [0.9, '#55BF3B'] // green
+                        [parseFloat(this.stop1) || 0.1, '#DF5353'], // red
+                        [parseFloat(this.stop2) || 0.5, '#DDDF0D'], // yellow
+                        [parseFloat(this.stop3) || 0.9, '#55BF3B'] // green
                     ],
                     lineWidth: 0,
                     tickWidth: 0,
                     minorTickInterval: null,
                     tickAmount: 2,
+                    tickPositions: [this.targetValue] || [0],
+                    tickWidth: 3,
+                    tickLength: 105,
                     title: {
                         y: -70
                     },

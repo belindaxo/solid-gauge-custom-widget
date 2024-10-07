@@ -14,6 +14,13 @@
             "url": "https://belindaxo.github.io/solid-gauge-custom-widget/dist/bundle.js",
             "integrity": "",
             "ignoreIntegrity": true
+        },
+        {
+            "kind": "styling",
+            "tag": "com-sap-sample-solidgauge-aps",
+            "url": "https://belindaxo.github.io/solid-gauge-custom-widget/dist/bundle.js",
+            "integrity": "",
+            "ignoreIntegrity": true
         }
     ],
     "properties": {
@@ -24,6 +31,58 @@
         "height": {
             "type": "integer",
             "default": 400
+        },
+        "chartTitle": {
+            "type": "string",
+            "description": "The title of the chart",
+            "default": ""
+        },
+        "titleSize": {
+            "type": "string",
+            "description": "The font size of the title",
+            "default": "18px"
+        },
+        "titleFontStyle": {
+            "type": "string",
+            "description": "The font style of the title",
+            "default": "bold"
+        },
+        "titleAlignment": {
+            "type": "string",
+            "description": "The alignment of the title",
+            "default": "left"
+        },
+        "titleColor": {
+            "type": "string",
+            "description": "The color of the title text",
+            "default": "#333333"
+        },
+        "minValue": {
+            "type": "number",
+            "description": "The minimum value of the gauge",
+            "default": -1
+        },
+        "maxValue": {
+            "type": "number",
+            "description": "The maximum value of the gauge",
+            "default": 1
+        },
+        "stop1": {
+            "type": "number",
+            "default": 0.1
+        },
+        "stop2": {
+            "type": "number",
+            "default": 0.5
+        },
+        "stop3": {
+            "type": "number",
+            "default": 0.9
+        },
+        "targetValue": {
+            "type": "number",
+            "description": "The target value of the gauge",
+            "default": 0
         }
     },
     "methods": {
