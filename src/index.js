@@ -141,15 +141,19 @@ const parseMetadata = metadata => {
                     tickWidth: 0,
                     minorTickInterval: null,
                     tickAmount: 2,
-                    tickPositions: [this.targetValue] || [0],
-                    tickWidth: 3,
-                    tickLength: 105,
                     title: {
                         y: -70
                     },
                     labels: {
                         enabled: false
-                    }
+                    },
+                    plotLines: [{
+                        value: parseFloat(this.targetValue) || 0, //target value
+                        color: '#000000',
+                        width: 2,
+                        zIndex: 5, //ensure it's on top of the gauge
+                        dashStyle: 'solid',
+                    }]
                 },
                 plotOptions: {
                     solidgauge: {
