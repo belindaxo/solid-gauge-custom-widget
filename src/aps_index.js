@@ -79,6 +79,12 @@
                 <td>Target Indicator Value</td>
                 <td><input id="targetValue" type="number" step="0.01" value="0"></td>
             </tr>
+            <tr>
+                <td>
+                    <input id="invertGauge" type="checkbox">
+                    <label for="invertGauge">Flip Gauge</label>
+                </td>
+            </tr>
         </table>
         <input type="submit" style="display:none;">
         </form>
@@ -94,6 +100,14 @@
             this._shadowRoot.getElementById('titleFontStyle').addEventListener('change', this._submit.bind(this));
             this._shadowRoot.getElementById('titleAlignment').addEventListener('change', this._submit.bind(this));
             this._shadowRoot.getElementById('titleColor').addEventListener('change', this._submit.bind(this));
+            this._shadowRoot.getElementById('minValue').addEventListener('change', this._submit.bind(this));
+            this._shadowRoot.getElementById('maxValue').addEventListener('change', this._submit.bind(this));
+            this._shadowRoot.getElementById('stop1').addEventListener('change', this._submit.bind(this));
+            this._shadowRoot.getElementById('stop2').addEventListener('change', this._submit.bind(this));
+            this._shadowRoot.getElementById('stop3').addEventListener('change', this._submit.bind(this));
+            this._shadowRoot.getElementById('targetValue').addEventListener('change', this._submit.bind(this));
+            this._shadowRoot.getElementById('invertGauge').addEventListener('change', this._submit.bind(this));
+
         }
 
         _submit(e) {
@@ -111,7 +125,8 @@
                         stop1: this.stop1,
                         stop2: this.stop2,
                         stop3: this.stop3,
-                        targetValue: this.targetValue
+                        targetValue: this.targetValue,
+                        invertGauge: this.invertGauge
                     }
                 }
             }));
@@ -203,6 +218,14 @@
 
         set targetValue(value) {
             this._shadowRoot.getElementById('targetValue').value = value;
+        }
+
+        get invertGauge() {
+            return this._shadowRoot.getElementById('invertGauge').checked;
+        }
+
+        set invertGauge(value) {
+            this._shadowRoot.getElementById('invertGauge').checked = value;
         }
     }
     customElements.define('com-sap-sample-solidgauge-aps', SolidGaugeAps);

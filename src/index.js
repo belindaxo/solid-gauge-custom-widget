@@ -1,3 +1,6 @@
+/**
+ * Module dependencies for Highcharts Solid Gauge chart.
+ */
 import Highcharts from 'highcharts';
 import HighchartsMore from 'highcharts/highcharts-more';
 HighchartsMore(Highcharts);
@@ -6,6 +9,11 @@ Exporting(Highcharts);
 import SolidGauge from 'highcharts/modules/solid-gauge';
 SolidGauge(Highcharts);
 
+/**
+ * Parses metadata into structured dimensions and measures.
+ * @param {Object} metadata - The metadata object from SAC data binding.
+ * @returns {Object} An object containing parsed dimensions, measures, and their maps.
+ */
 const parseMetadata = metadata => {
     const { dimensions: dimensionsMap, mainStructureMembers: measuresMap } = metadata;
     const dimensions = [];
@@ -21,24 +29,62 @@ const parseMetadata = metadata => {
     return { dimensions, measures, dimensionsMap, measuresMap };
 }
 
-(function() {
+(function () {
+    /**
+    * Custom Web Component for rendering a 3D Funnel Chart in SAP Analytics Cloud.
+    * @extends HTMLElement
+    */
     class SolidGauge extends HTMLElement {
+        /**
+         * Initializes the shadow DOM, styles, and chart container.
+         */
         constructor() {
             super();
             this.attachShadow({ mode: 'open' });
+
+            // Create a CSSStyleSheet for the shadow DOM
+            const sheet = new CSSStyleSheet();
+            sheet.replaceSync(`
+                @font-face {
+                    font-family: '72';
+                    src: url('../fonts/72-Regular.woff2') format('woff2');
+                }
+                #container {
+                    width: 100%;
+                    height: 100%;
+                    font-family: '72';
+                }
+            `);
+
+            // Apply the stylesheet to the shadow DOM
+            this.shadowRoot.adoptedStyleSheets = [sheet];
+
+
             this.shadowRoot.innerHTML = `
-                <div id="container" style="width:100%; height:100%;"></div>
+                <div id="container"></div>
             `;
         }
 
+        /**
+         * Called when the widget is resized.
+         * @param {number} width - New width of the widget.
+         * @param {number} height - New height of the widget.
+         */
         onCustomWidgetResize(width, height) {
             this._renderChart();
         }
 
+        /**
+         * Called after widget properties are updated.
+         * @param {Object} changedProperties - Object containing changed attributes.
+         */
         onCustomWidgetAfterUpdate(changedProperties) {
             this._renderChart();
         }
 
+        /**
+         * Called when the widget is destroyed. Cleans up chart instance.
+         */
         onCustomWidgetDestroy() {
             if (this._chart) {
                 this._chart.destroy();
@@ -46,6 +92,10 @@ const parseMetadata = metadata => {
             }
         }
 
+        /**
+         * Specifies which attributes should trigger re-rendering on change.
+         * @returns {string[]} An array of observed attribute names.
+         */
         static get observedAttributes() {
             return [
                 'chartTitle', 'titleSize', 'titleFontStyle', 'titleAlignment', 'titleColor',    // Title Properties
@@ -53,11 +103,32 @@ const parseMetadata = metadata => {
             ];
         }
 
+        /**
+         * Called when an observed attribute changes.
+         * @param {string} name - The name of the changed attribute.
+         * @param {string} oldValue - The old value of the attribute.
+         * @param {string} newValue - The new value of the attribute.
+         */
         attributeChangedCallback(name, oldValue, newValue) {
             if (oldValue !== newValue) {
                 this[name] = newValue;
                 this._renderChart();
             }
+        }
+
+        _processSeriesData(measures) {
+            return measures.map(measure => ({
+                id: measure.id,
+                name: measure.label,
+                data: [],
+                key: measure.key,
+                dataLabels: {
+                    formatter: function () {
+                        return '<span>' + Highcharts.numberFormat(this.y * 100, 1) + '%' + '</span>';
+                    }
+                },
+                type: 'solidgauge'
+            }));
         }
 
         _renderChart() {
@@ -73,20 +144,22 @@ const parseMetadata = metadata => {
 
             const categoryData = [];
 
-            const series = measures.map(measure => {
-                return {
-                    id: measure.id,
-                    name: measure.label,
-                    data: [],
-                    key: measure.key,
-                    dataLabels: {
-                        formatter: function() {
-                            return '<span style="font-size:25px">' + Highcharts.numberFormat(this.y * 100, 1) + '%' + '</span>';
-                        }
-                    },
-                    type: 'solidgauge'
-                }
-            });
+            const series = this._processSeriesData(measures);
+
+            // const series = measures.map(measure => {
+            //     return {
+            //         id: measure.id,
+            //         name: measure.label,
+            //         data: [],
+            //         key: measure.key,
+            //         dataLabels: {
+            //             formatter: function() {
+            //                 return '<span style="font-size:25px">' + Highcharts.numberFormat(this.y * 100, 1) + '%' + '</span>';
+            //             }
+            //         },
+            //         type: 'solidgauge'
+            //     }
+            // });
 
             data.forEach(row => {
                 categoryData.push(dimensions.map(dimension => {
@@ -97,9 +170,25 @@ const parseMetadata = metadata => {
                 });
             });
 
+            // Determine the stops array based on the invertGauge property
+            const stops = this.invertGauge
+                ? [
+                    [parseFloat(this.stop3) || 0.9, '#55BF3B'], // green
+                    [parseFloat(this.stop2) || 0.5, '#DDDF0D'], // yellow
+                    [parseFloat(this.stop1) || 0.1, '#DF5353']  // red
+                ]
+                : [
+                    [parseFloat(this.stop1) || 0.1, '#DF5353'], // red
+                    [parseFloat(this.stop2) || 0.5, '#DDDF0D'], // yellow
+                    [parseFloat(this.stop3) || 0.9, '#55BF3B']  // green
+                ];
+
             const chartOptions = {
                 chart: {
                     type: 'solidgauge',
+                    style: {
+                        fontFamily: "'72', sans-serif"
+                    }
                 },
                 title: {
                     text: this.chartTitle || "",
@@ -132,11 +221,7 @@ const parseMetadata = metadata => {
                 yAxis: {
                     min: parseFloat(this.minValue) || -1,
                     max: parseFloat(this.maxValue) || 1,
-                    stops: [
-                        [parseFloat(this.stop1) || 0.1, '#DF5353'], // red
-                        [parseFloat(this.stop2) || 0.5, '#DDDF0D'], // yellow
-                        [parseFloat(this.stop3) || 0.9, '#55BF3B'] // green
-                    ],
+                    stops,
                     lineWidth: 0,
                     tickWidth: 0,
                     minorTickInterval: null,
@@ -159,7 +244,7 @@ const parseMetadata = metadata => {
                     solidgauge: {
                         borderRadius: 3,
                         dataLabels: {
-                            y: 5, 
+                            y: 5,
                             borderWidth: 0,
                             useHTML: true
                         }

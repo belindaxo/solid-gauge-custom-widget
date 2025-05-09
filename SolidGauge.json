@@ -83,6 +83,11 @@
             "type": "number",
             "description": "The target value of the gauge",
             "default": 0
+        },
+        "invertGauge": {
+            "type": "boolean",
+            "description": "Inverts the colors of the gauge",
+            "default": false
         }
     },
     "methods": {

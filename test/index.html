@@ -47,6 +47,10 @@
 
             _renderChart() {
                 const container = this.shadowRoot.querySelector('#container');
+                const currentValue = -0.9;
+                const referenceValue = -0.1;
+                const delta = currentValue - referenceValue;
+                
                 Highcharts.chart(container, {
                     chart: {
                         type: 'solidgauge',
@@ -80,12 +84,12 @@
                         enabled: false
                     },
                     yAxis: {
-                        min: 0,
-                        max: 100,
+                        min: -1,
+                        max: 1,
                         stops: [
-                            [10, '#DF5353'], // red
-                            [50, '#DDDF0D'], // yellow
-                            [90, '#55BF3B'] // green
+                            [-0.1, '#DF5353'], // red
+                            [0.5, '#DDDF0D'], // yellow
+                            [0.9, '#55BF3B'] // green
                         ],
                         lineWidth: 0,
                         tickWidth: 0,
@@ -98,7 +102,7 @@
                             enabled: false
                         },
                         plotLines: [{
-                        value: 65, //target value
+                        value: 0, //target value
                         color: '#000000',
                         width: 2,
                         zIndex: 5, //ensure it's on top of the gauge
@@ -111,12 +115,25 @@
                             dataLabels: {
                                 y: 5, 
                                 borderWidth: 0,
-                                useHTML: true
+                                useHTML: true,
+                                formatter: function () {
+                                    // Determine the color based on the current value
+                                    const stops = this.series.yAxis.options.stops;
+                                    const color = currentValue >= 0 ? '#55BF3B' : '#DF5353';
+                                    const deltaSign = delta > 0 ? '+' : '';
+                                    const triangle = delta > 0 ? '\u25B2' : '\u25BC'; 
+                                    return `
+                                        <span style="font-size:25px"> ${Highcharts.numberFormat(currentValue * 100, 1)}%</span><br/>
+                                        <span style="font-size:25px; color: ${color}">
+                                            ${triangle} ${deltaSign}${Highcharts.numberFormat(delta * 100, 1)}%
+                                        </span>
+                                    `;
+                                }
                             }
                         }
                     },
                     series: [{
-                        data: [70],
+                        data: [currentValue],
                     }]
                 });
             }
@@ -137,8 +154,10 @@
                 <td><input id="maxValue" type="number" value="100"></td>
             </tr>
             <tr>
-                <td>Flip Gauge</td>
-                <td><input id="flipGauge" type="checkbox"></td>
+                <td>
+                    <input id="flipGauge" type="checkbox">
+                    <label for="flipGauge">Flip Gauge</label>
+                </td>
             </tr>
         </table>
         <legend style="font-weight: bold;font-size: 18px;">Thresholds</legend>
@@ -259,5 +278,92 @@
         </table>
         <input type="submit" style="display:none;">
     </form>
+    <form id="form">
+        <legend style="font-weight: bold;font-size: 18px;"> Font </legend>
+        <table>
+            <tr>
+                <td>Chart Title</td>
+            </tr>
+            <tr>
+                <td><input id="chartTitle" type="text"></td>
+            </tr>
+            <tr>
+                <table>
+                    <tr>
+                        <td>Size</td>
+                        <td>Font Style</td>
+                        <td>Alignment</td>
+                        <td>Color</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select id="titleSize">
+                                <option value="10px">10</option>
+                                <option value="12px">12</option>
+                                <option value="14px">14</option>
+                                <option value="16px">16</option>
+                                <option value="18px" selected>18</option>
+                                <option value="20px">20</option>
+                                <option value="22px">22</option>
+                                <option value="24px">24</option>
+                                <option value="32px">32</option>
+                                <option value="48px">48</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select id="titleFontStyle">
+                                <option value="normal">Normal</option>
+                                <option value="bold" selected>Bold</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select id="titleAlignment">
+                                <option value="left" selected>Left</option>
+                                <option value="center">Center</option>
+                                <option value="right">Right</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input id="titleColor" type="color" value="#333333">
+                        </td>
+                    </tr>
+                </table>
+            </tr>
+        </table>
+        <legend style="font-weight: bold;font-size: 18px;"> Gauge Settings </legend>
+        <table>
+            <tr>
+                <td>Minimum Value</td>
+                <td><input id="minValue" type="number" step="0.01" value="-1"></td>
+            </tr>
+            <tr>
+                <td>Maximum Value</td>
+                <td><input id="maxValue" type="number" step="0.01" value="1"></td>
+            </tr>
+            <tr>
+                <td>Stop 1 (Low to Mid)</td>
+                <td><input id="stop1" type="number" step="0.01" value="0.1"></td>
+            </tr>
+            <tr>
+                <td>Stop 2 (Mid to High)</td>
+                <td><input id="stop2" type="number" step="0.01" value="0.5"></td>
+            </tr>
+            <tr>
+                <td>Stop 3 (High to Max)</td>
+                <td><input id="stop3" type="number" step="0.01" value="0.9"></td>
+            </tr>
+            <tr>
+                <td>Target Indicator Value</td>
+                <td><input id="targetValue" type="number" step="0.01" value="0"></td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="invertGauge" type="checkbox">
+                    <label for="invertGauge">Invert Gauge</label>
+                </td>
+            </tr>
+        </table>
+        <input type="submit" style="display:none;">
+        </form>
 </body>
 </html>
