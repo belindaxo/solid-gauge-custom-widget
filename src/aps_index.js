@@ -61,8 +61,8 @@
                             <select id="labelSize">
                                 <option value="10px">10</option>
                                 <option value="12px">12</option>
-                                <option value="14px">14</option>
-                                <option value="16px" selected>16</option>
+                                <option value="14px" selected>14</option>
+                                <option value="16px">16</option>
                                 <option value="18px">18</option>
                                 <option value="20px">20</option>
                                 <option value="22px">22</option>

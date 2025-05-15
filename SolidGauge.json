@@ -60,7 +60,7 @@
         "labelSize": {
             "type": "string",
             "description": "The font size of the data label",
-            "default": "16px"   
+            "default": "14px"   
         },
         "minValue": {
             "type": "number",

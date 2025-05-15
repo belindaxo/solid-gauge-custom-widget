@@ -259,11 +259,11 @@ const parseMetadata = metadata => {
                     solidgauge: {
                         borderRadius: 3,
                         dataLabels: {
-                            y: 0,
+                            y: 10,
                             borderWidth: 0,
                             useHTML: true,
                             style: {
-                                fontSize: this.labelSize || "16px"
+                                fontSize: this.labelSize || "14px"
                             },
                             formatter: this._formatDataLabel(isInverted),
                         }
