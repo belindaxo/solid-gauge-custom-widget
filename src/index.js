@@ -116,6 +116,11 @@ const parseMetadata = metadata => {
             }
         }
 
+        /**
+         * Processes measures into series data.
+         * @param {Array} measures - The measures from metadata.
+         * @returns {Array} Processed series data.
+         */
         _processSeriesData(measures) {
             return measures.map(measure => ({
                 id: measure.id,
@@ -129,6 +134,28 @@ const parseMetadata = metadata => {
                 },
                 type: 'solidgauge'
             }));
+        }
+
+        /**
+         * Sets the stops for the gauge color gradient based on the invertGauge property.
+         * @returns {Array} Stops for the gauge color gradient.
+         */
+        _setStops() {
+            let stops = [];
+            if (!this.invertGauge) {
+                stops = [
+                    [parseFloat(this.stop1) || 0.4875, '#DF5353'], // red
+                    [parseFloat(this.stop2) || 0.5, '#DDDF0D'], // yellow
+                    [parseFloat(this.stop3) || 0.5, '#55BF3B']  // green
+                ]
+            } else {
+                stops = [
+                    [parseFloat(this.stop3) || 0.4875, '#55BF3B'], // green
+                    [parseFloat(this.stop2) || 0.5, '#DDDF0D'], // yellow
+                    [parseFloat(this.stop1) || 0.5, '#DF5353']  // red
+                ]
+            }
+            return stops;
         }
 
         _renderChart() {
@@ -146,21 +173,6 @@ const parseMetadata = metadata => {
 
             const series = this._processSeriesData(measures);
 
-            // const series = measures.map(measure => {
-            //     return {
-            //         id: measure.id,
-            //         name: measure.label,
-            //         data: [],
-            //         key: measure.key,
-            //         dataLabels: {
-            //             formatter: function() {
-            //                 return '<span style="font-size:25px">' + Highcharts.numberFormat(this.y * 100, 1) + '%' + '</span>';
-            //             }
-            //         },
-            //         type: 'solidgauge'
-            //     }
-            // });
-
             data.forEach(row => {
                 categoryData.push(dimensions.map(dimension => {
                     return row[dimension.key].label;
@@ -171,17 +183,7 @@ const parseMetadata = metadata => {
             });
 
             // Determine the stops array based on the invertGauge property
-            const stops = this.invertGauge
-                ? [
-                    [parseFloat(this.stop3) || 0.9, '#55BF3B'], // green
-                    [parseFloat(this.stop2) || 0.5, '#DDDF0D'], // yellow
-                    [parseFloat(this.stop1) || 0.1, '#DF5353']  // red
-                ]
-                : [
-                    [parseFloat(this.stop1) || 0.1, '#DF5353'], // red
-                    [parseFloat(this.stop2) || 0.5, '#DDDF0D'], // yellow
-                    [parseFloat(this.stop3) || 0.9, '#55BF3B']  // green
-                ];
+            const stops = this._setStops();
 
             const chartOptions = {
                 chart: {
@@ -219,8 +221,8 @@ const parseMetadata = metadata => {
                     enabled: false
                 },
                 yAxis: {
-                    min: parseFloat(this.minValue) || -1,
-                    max: parseFloat(this.maxValue) || 1,
+                    min: parseFloat(this.minValue) || -2,
+                    max: parseFloat(this.maxValue) || 2,
                     stops,
                     lineWidth: 0,
                     tickWidth: 0,

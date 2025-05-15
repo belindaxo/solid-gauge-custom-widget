@@ -57,15 +57,18 @@
         <table>
             <tr>
                 <td>Minimum Value</td>
-                <td><input id="minValue" type="number" step="0.01" value="-1"></td>
+                <td><input id="minValue" type="number" step="0.01" value="-2"></td>
             </tr>
             <tr>
                 <td>Maximum Value</td>
-                <td><input id="maxValue" type="number" step="0.01" value="1"></td>
+                <td><input id="maxValue" type="number" step="0.01" value="2"></td>
+            </tr>
+            <tr>
+                <td>(Stops must be between 0 and 1)</td>
             </tr>
             <tr>
                 <td>Stop 1 (Low to Mid)</td>
-                <td><input id="stop1" type="number" step="0.01" value="0.1"></td>
+                <td><input id="stop1" type="number" step="0.01" value="0.4875"></td>
             </tr>
             <tr>
                 <td>Stop 2 (Mid to High)</td>
@@ -73,7 +76,7 @@
             </tr>
             <tr>
                 <td>Stop 3 (High to Max)</td>
-                <td><input id="stop3" type="number" step="0.01" value="0.9"></td>
+                <td><input id="stop3" type="number" step="0.01" value="0.5"></td>
             </tr>
             <tr>
                 <td>Target Indicator Value</td>
@@ -82,7 +85,7 @@
             <tr>
                 <td>
                     <input id="invertGauge" type="checkbox">
-                    <label for="invertGauge">Flip Gauge</label>
+                    <label for="invertGauge">Invert Gauge</label>
                 </td>
             </tr>
         </table>

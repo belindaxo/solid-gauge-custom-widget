@@ -47,8 +47,9 @@
 
             _renderChart() {
                 const container = this.shadowRoot.querySelector('#container');
-                const currentValue = -0.9;
-                const referenceValue = -0.1;
+                const currentValue = -0.1;
+                const referenceValue = 0;
+                const targetValue = 0;
                 const delta = currentValue - referenceValue;
                 
                 Highcharts.chart(container, {
@@ -78,18 +79,22 @@
                         }
                     },
                     tooltip: {
-                        enabled: false
+                        enabled: true,
+                        followPointer: true,
+                        hideDelay: 0,
+                        useHTML: true,
+                        format: `Target Value: ${targetValue}`,
                     },
                     exporting: {
                         enabled: false
                     },
                     yAxis: {
-                        min: -1,
-                        max: 1,
+                        min: -2,
+                        max: 2,
                         stops: [
-                            [-0.1, '#DF5353'], // red
-                            [0.5, '#DDDF0D'], // yellow
-                            [0.9, '#55BF3B'] // green
+                            [0.4875, '#DF5353'],   // red up to -5%
+                            [0.5, '#DDDF0D'],      // yellow from -5% to 0%
+                            [0.5, '#55BF3B']       // green from 0% and above
                         ],
                         lineWidth: 0,
                         tickWidth: 0,
@@ -102,7 +107,7 @@
                             enabled: false
                         },
                         plotLines: [{
-                        value: 0, //target value
+                        value: targetValue, //target value
                         color: '#000000',
                         width: 2,
                         zIndex: 5, //ensure it's on top of the gauge
@@ -123,7 +128,7 @@
                                     const deltaSign = delta > 0 ? '+' : '';
                                     const triangle = delta > 0 ? '\u25B2' : '\u25BC'; 
                                     return `
-                                        <span style="font-size:25px"> ${Highcharts.numberFormat(currentValue * 100, 1)}%</span><br/>
+                                        <span style="font-size:25px" color: ${color}> ${triangle} ${deltaSign} ${Highcharts.numberFormat(currentValue * 100, 1)}%</span><br/>
                                         <span style="font-size:25px; color: ${color}">
                                             ${triangle} ${deltaSign}${Highcharts.numberFormat(delta * 100, 1)}%
                                         </span>
