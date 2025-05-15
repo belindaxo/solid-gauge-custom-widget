@@ -131,6 +131,11 @@ const parseMetadata = metadata => {
             }));
         }
 
+        /**
+         * Formats the data label for the gauge.
+         * @param {boolean} isInverted - Indicates if the gauge is inverted.
+         * @returns {Function} A function to format the data label.
+         */
         _formatDataLabel(isInverted) {
             return function () {
                 const currentValue = this.y;
@@ -138,7 +143,7 @@ const parseMetadata = metadata => {
                 const deltaSign = currentValue > 0 ? '+' : '';
                 const triangle = currentValue > 0 ? '\u25B2' : currentValue < 0 ? '\u25BC' : '';
                 return `
-                    <span style="font-size: 25px; color: ${color}">${triangle} ${deltaSign}${Highcharts.numberFormat(currentValue * 100, 1)}%</span>
+                    <span style="color: ${color}">${triangle} ${deltaSign}${Highcharts.numberFormat(currentValue * 100, 1)}%</span>
                 `;
             }
         }
