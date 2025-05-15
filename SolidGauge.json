@@ -57,6 +57,11 @@
             "description": "The color of the title text",
             "default": "#333333"
         },
+        "labelSize": {
+            "type": "string",
+            "description": "The font size of the data label",
+            "default": "16px"   
+        },
         "minValue": {
             "type": "number",
             "description": "The minimum value of the gauge",

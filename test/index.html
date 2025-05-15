@@ -121,7 +121,7 @@
                                 borderWidth: 0,
                                 useHTML: true,
                                 style: {
-                                    fontSize: '25px',
+                                    fontSize: "16px"
                                 },
                                 formatter: function () {
                                     // Determine the color based on the current value
@@ -130,7 +130,7 @@
                                     const deltaSign = currentValue > 0 ? '+' : '';
                                     const triangle = currentValue > 0 ? '\u25B2' : '\u25BC'; 
                                     return `
-                                        <span style="font-size:25px; color: ${color}">${triangle} ${deltaSign}${Highcharts.numberFormat(currentValue * 100, 1)}%</span>
+                                        <span style="color: ${color}">${triangle} ${deltaSign}${Highcharts.numberFormat(currentValue * 100, 1)}%</span>
                                     `;
                                 }
                             }
@@ -198,24 +198,20 @@
                 </table>
             </tr>
             <tr>
-                <td>Data Label</td>
-            </tr>
-            <tr>
                 <table>
                     <tr>
-                        <td>Size</td>
-                    </tr>
-                    <tr>
+                        <td>Data Label Size</td>
+
                         <td>
                             <select id="labelSize">
                                 <option value="10px">10</option>
                                 <option value="12px">12</option>
                                 <option value="14px">14</option>
-                                <option value="16px">16</option>
+                                <option value="16px" selected>16</option>
                                 <option value="18px">18</option>
                                 <option value="20px">20</option>
                                 <option value="22px">22</option>
-                                <option value="24px" selected>24</option>
+                                <option value="24px">24</option>
                                 <option value="32px">32</option>
                                 <option value="48px">48</option>
                             </select>

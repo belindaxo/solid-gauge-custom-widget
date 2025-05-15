@@ -52,6 +52,28 @@
                     </tr>
                 </table>
             </tr>
+            <tr>
+                <table>
+                    <tr>
+                        <td>Data Label Size</td>
+
+                        <td>
+                            <select id="labelSize">
+                                <option value="10px">10</option>
+                                <option value="12px">12</option>
+                                <option value="14px">14</option>
+                                <option value="16px" selected>16</option>
+                                <option value="18px">18</option>
+                                <option value="20px">20</option>
+                                <option value="22px">22</option>
+                                <option value="24px">24</option>
+                                <option value="32px">32</option>
+                                <option value="48px">48</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </tr> 
         </table>
         <legend style="font-weight: bold;font-size: 18px;"> Gauge Settings </legend>
         <table>
@@ -100,6 +122,7 @@
             this._shadowRoot.getElementById('titleFontStyle').addEventListener('change', this._submit.bind(this));
             this._shadowRoot.getElementById('titleAlignment').addEventListener('change', this._submit.bind(this));
             this._shadowRoot.getElementById('titleColor').addEventListener('change', this._submit.bind(this));
+            this._shadowRoot.getElementById('labelSize').addEventListener('change', this._submit.bind(this));
             this._shadowRoot.getElementById('minValue').addEventListener('change', this._submit.bind(this));
             this._shadowRoot.getElementById('maxValue').addEventListener('change', this._submit.bind(this));
             this._shadowRoot.getElementById('stop1').addEventListener('change', this._submit.bind(this));
@@ -120,6 +143,7 @@
                         titleFontStyle: this.titleFontStyle,
                         titleAlignment: this.titleAlignment,
                         titleColor: this.titleColor,
+                        labelSize: this.labelSize,
                         minValue: this.minValue,
                         maxValue: this.maxValue,
                         stop1: this.stop1,
@@ -170,6 +194,14 @@
 
         set titleColor(value) {
             this._shadowRoot.getElementById('titleColor').value = value;
+        }
+
+        get labelSize() {
+            return this._shadowRoot.getElementById('labelSize').value;
+        }
+
+        set labelSize(value) {
+            this._shadowRoot.getElementById('labelSize').value = value;
         }
 
         get minValue() {

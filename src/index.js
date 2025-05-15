@@ -98,8 +98,8 @@ const parseMetadata = metadata => {
          */
         static get observedAttributes() {
             return [
-                'chartTitle', 'titleSize', 'titleFontStyle', 'titleAlignment', 'titleColor',    // Title Properties
-                'minValue', 'maxValue', 'stop1', 'stop2', 'stop3', 'targetValue'                // Gauge Properties
+                'chartTitle', 'titleSize', 'titleFontStyle', 'titleAlignment', 'titleColor', "labelSize",   // Font Properties
+                'minValue', 'maxValue', 'stop1', 'stop2', 'stop3', 'targetValue'                            // Gauge Properties
             ];
         }
 
@@ -139,7 +139,7 @@ const parseMetadata = metadata => {
         _formatDataLabel(isInverted) {
             return function () {
                 const currentValue = this.y;
-                const color = (currentValue >= 0 && !isInverted) || (currentValue < 0 && isInverted) ? '#55BF3B' : '#DF5353';
+                const color = (currentValue >= 0 && !isInverted) || (currentValue < 0 && isInverted) ? '#55BF3B' : currentValue == 0 ? '#000000' : '#DF5353';
                 const deltaSign = currentValue > 0 ? '+' : '';
                 const triangle = currentValue > 0 ? '\u25B2' : currentValue < 0 ? '\u25BC' : '';
                 return `
@@ -262,6 +262,9 @@ const parseMetadata = metadata => {
                             y: 0,
                             borderWidth: 0,
                             useHTML: true,
+                            style: {
+                                fontSize: this.labelSize || "16px"
+                            },
                             formatter: this._formatDataLabel(isInverted),
                         }
                     }
