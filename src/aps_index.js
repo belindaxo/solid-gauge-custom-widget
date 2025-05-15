@@ -64,19 +64,16 @@
                 <td><input id="maxValue" type="number" step="0.01" value="2"></td>
             </tr>
             <tr>
-                <td>(Stops must be between 0 and 1)</td>
-            </tr>
-            <tr>
                 <td>Stop 1 (Low to Mid)</td>
-                <td><input id="stop1" type="number" step="0.01" value="0.4875"></td>
+                <td><input id="stop1" type="number" step="0.0001" value="0.4875" min="0" max="1"></td>
             </tr>
             <tr>
                 <td>Stop 2 (Mid to High)</td>
-                <td><input id="stop2" type="number" step="0.01" value="0.5"></td>
+                <td><input id="stop2" type="number" step="0.0001" value="0.5" min="0" max="1"></td>
             </tr>
             <tr>
                 <td>Stop 3 (High to Max)</td>
-                <td><input id="stop3" type="number" step="0.01" value="0.5"></td>
+                <td><input id="stop3" type="number" step="0.0001" value="0.5" min="0" max="1"></td>
             </tr>
             <tr>
                 <td>Target Indicator Value</td>
