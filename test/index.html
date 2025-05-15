@@ -117,9 +117,12 @@
                         solidgauge: {
                             borderRadius: 3,
                             dataLabels: {
-                                y: 5, 
+                                y: 0, 
                                 borderWidth: 0,
                                 useHTML: true,
+                                style: {
+                                    fontSize: '25px',
+                                },
                                 formatter: function () {
                                     // Determine the color based on the current value
                                     const stops = this.series.yAxis.options.stops;
@@ -194,6 +197,32 @@
                     </tr>
                 </table>
             </tr>
+            <tr>
+                <td>Data Label</td>
+            </tr>
+            <tr>
+                <table>
+                    <tr>
+                        <td>Size</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select id="labelSize">
+                                <option value="10px">10</option>
+                                <option value="12px">12</option>
+                                <option value="14px">14</option>
+                                <option value="16px">16</option>
+                                <option value="18px">18</option>
+                                <option value="20px">20</option>
+                                <option value="22px">22</option>
+                                <option value="24px" selected>24</option>
+                                <option value="32px">32</option>
+                                <option value="48px">48</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </tr> 
         </table>
         <legend style="font-weight: bold;font-size: 18px;"> Gauge Settings </legend>
         <table>

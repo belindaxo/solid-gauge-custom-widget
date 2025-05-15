@@ -136,9 +136,9 @@ const parseMetadata = metadata => {
                 const currentValue = this.y;
                 const color = (currentValue >= 0 && !isInverted) || (currentValue < 0 && isInverted) ? '#55BF3B' : '#DF5353';
                 const deltaSign = currentValue > 0 ? '+' : '';
-                const triangle = currentValue > 0 ? '\u25B2' : '\u25BC';
+                const triangle = currentValue > 0 ? '\u25B2' : currentValue < 0 ? '\u25BC' : '';
                 return `
-                    <span style="color: ${color}">${triangle} ${deltaSign}${Highcharts.numberFormat(currentValue * 100, 1)}%</span>
+                    <span style="font-size: 25px; color: ${color}">${triangle} ${deltaSign}${Highcharts.numberFormat(currentValue * 100, 1)}%</span>
                 `;
             }
         }
@@ -254,7 +254,7 @@ const parseMetadata = metadata => {
                     solidgauge: {
                         borderRadius: 3,
                         dataLabels: {
-                            y: 5,
+                            y: 0,
                             borderWidth: 0,
                             useHTML: true,
                             formatter: this._formatDataLabel(isInverted),
