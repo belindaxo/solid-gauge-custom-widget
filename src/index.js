@@ -184,6 +184,7 @@ const parseMetadata = metadata => {
             const categoryData = [];
 
             const series = this._processSeriesData(measures);
+            console.log("Series:", series);
 
             data.forEach(row => {
                 categoryData.push(dimensions.map(dimension => {
@@ -193,7 +194,7 @@ const parseMetadata = metadata => {
                     series.data.push(row[series.key].raw);
                 });
             });
-
+            console.log("Data:", data);
             // Determine the stops array based on the invertGauge property
             const stops = this._setStops();
             const isInverted = this.invertGauge;
