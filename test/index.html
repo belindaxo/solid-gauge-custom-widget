@@ -50,7 +50,6 @@
                 const currentValue = -0.1;
                 const referenceValue = 0;
                 const targetValue = 0;
-                const delta = currentValue - referenceValue;
                 
                 Highcharts.chart(container, {
                     chart: {
@@ -125,13 +124,10 @@
                                     // Determine the color based on the current value
                                     const stops = this.series.yAxis.options.stops;
                                     const color = currentValue >= 0 ? '#55BF3B' : '#DF5353';
-                                    const deltaSign = delta > 0 ? '+' : '';
-                                    const triangle = delta > 0 ? '\u25B2' : '\u25BC'; 
+                                    const deltaSign = currentValue > 0 ? '+' : '';
+                                    const triangle = currentValue > 0 ? '\u25B2' : '\u25BC'; 
                                     return `
-                                        <span style="font-size:25px" color: ${color}> ${triangle} ${deltaSign} ${Highcharts.numberFormat(currentValue * 100, 1)}%</span><br/>
-                                        <span style="font-size:25px; color: ${color}">
-                                            ${triangle} ${deltaSign}${Highcharts.numberFormat(delta * 100, 1)}%
-                                        </span>
+                                        <span style="font-size:25px; color: ${color}">${triangle} ${deltaSign}${Highcharts.numberFormat(currentValue * 100, 1)}%</span>
                                     `;
                                 }
                             }

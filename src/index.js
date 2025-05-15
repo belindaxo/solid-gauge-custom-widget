@@ -127,13 +127,20 @@ const parseMetadata = metadata => {
                 name: measure.label,
                 data: [],
                 key: measure.key,
-                dataLabels: {
-                    formatter: function () {
-                        return '<span>' + Highcharts.numberFormat(this.y * 100, 1) + '%' + '</span>';
-                    }
-                },
                 type: 'solidgauge'
             }));
+        }
+
+        _formatDataLabel(isInverted) {
+            return function () {
+                const currentValue = this.y;
+                const color = (currentValue >= 0 && !isInverted) || (currentValue < 0 && isInverted) ? '#55BF3B' : '#DF5353';
+                const deltaSign = currentValue > 0 ? '+' : '';
+                const triangle = currentValue > 0 ? '\u25B2' : '\u25BC';
+                return `
+                    <span style="color: ${color}">${triangle} ${deltaSign}${Highcharts.numberFormat(currentValue * 100, 1)}%</span>
+                `;
+            }
         }
 
         /**
@@ -184,6 +191,7 @@ const parseMetadata = metadata => {
 
             // Determine the stops array based on the invertGauge property
             const stops = this._setStops();
+            const isInverted = this.invertGauge;
 
             const chartOptions = {
                 chart: {
@@ -248,7 +256,8 @@ const parseMetadata = metadata => {
                         dataLabels: {
                             y: 5,
                             borderWidth: 0,
-                            useHTML: true
+                            useHTML: true,
+                            formatter: this._formatDataLabel(isInverted),
                         }
                     }
                 },
