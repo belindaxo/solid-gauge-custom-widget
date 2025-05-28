@@ -1,14 +1,10 @@
 /**
  * Module dependencies for Highcharts Solid Gauge chart.
  */
-import Highcharts from 'highcharts';
-import HighchartsMore from 'highcharts/highcharts-more';
-import Exporting from 'highcharts/modules/exporting';
-import SolidGauge from 'highcharts/modules/solid-gauge';
-
-HighchartsMore.default(Highcharts);
-Exporting.default(Highcharts);
-SolidGauge.default(Highcharts);
+import * as Highcharts from 'highcharts';
+import 'highcharts/highcharts-more';
+import 'highcharts/modules/exporting';
+import 'highcharts/modules/solid-gauge';
 
 /**
  * Parses metadata into structured dimensions and measures.
