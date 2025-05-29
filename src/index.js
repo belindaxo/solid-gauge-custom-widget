@@ -203,6 +203,9 @@ const parseMetadata = metadata => {
                         fontFamily: "'72', sans-serif"
                     }
                 },
+                credits: {
+                    enabled: false
+                },
                 title: {
                     text: this.chartTitle || "",
                     align: this.titleAlignment || "left",

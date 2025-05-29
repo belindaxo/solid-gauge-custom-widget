@@ -6,21 +6,21 @@
     "license": "",
     "id": "com.sap.sample.solidgauge",
     "newInstancePrefix": "SolidGauge",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "webcomponents": [
         {
             "kind": "main",
             "tag": "com-sap-sample-solidgauge",
             "url": "https://belindaxo.github.io/solid-gauge-custom-widget/dist/bundle.js",
-            "integrity": "",
-            "ignoreIntegrity": true
+            "integrity": "sha256-BHNZ4dy637e0gzCJAEKrlgLm6ayTiZQSuwaxgqMGE14=",
+            "ignoreIntegrity": false
         },
         {
             "kind": "styling",
             "tag": "com-sap-sample-solidgauge-aps",
             "url": "https://belindaxo.github.io/solid-gauge-custom-widget/dist/bundle.js",
-            "integrity": "",
-            "ignoreIntegrity": true
+            "integrity": "sha256-BHNZ4dy637e0gzCJAEKrlgLm6ayTiZQSuwaxgqMGE14=",
+            "ignoreIntegrity": false
         }
     ],
     "properties": {
