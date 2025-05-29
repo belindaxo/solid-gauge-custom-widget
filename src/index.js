@@ -207,9 +207,9 @@ const parseMetadata = metadata => {
                     text: this.chartTitle || "",
                     align: this.titleAlignment || "left",
                     style: {
-                        fontSize: this.titleSize || "18px",
+                        fontSize: this.titleSize || "16px",
                         fontStyle: this.titleFontStyle || "bold",
-                        color: this.titleColor || "#333333"
+                        color: this.titleColor || "#004B8D"
                     }
                 },
                 pane: {
@@ -218,7 +218,7 @@ const parseMetadata = metadata => {
                     startAngle: -90,
                     endAngle: 90,
                     background: {
-                        backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#fafafa',
+                        backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#ffffff',
                         borderRadius: 5,
                         innerRadius: '60%',
                         outerRadius: '100%',
