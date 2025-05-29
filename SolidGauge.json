@@ -40,7 +40,7 @@
         "titleSize": {
             "type": "string",
             "description": "The font size of the title",
-            "default": "18px"
+            "default": "16px"
         },
         "titleFontStyle": {
             "type": "string",
@@ -55,7 +55,7 @@
         "titleColor": {
             "type": "string",
             "description": "The color of the title text",
-            "default": "#333333"
+            "default": "#004B8D"
         },
         "labelSize": {
             "type": "string",
