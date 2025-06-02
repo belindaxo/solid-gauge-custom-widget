@@ -153,13 +153,13 @@ const parseMetadata = metadata => {
             let stops = [];
             if (!this.invertGauge) {
                 stops = [
-                    [parseFloat(this.stop1) || 0.4875, '#DF5353'], // red
+                    [parseFloat(this.stop1) || 0.475, '#DF5353'], // red
                     [parseFloat(this.stop2) || 0.5, '#DDDF0D'], // yellow
                     [parseFloat(this.stop3) || 0.5, '#55BF3B']  // green
                 ]
             } else {
                 stops = [
-                    [parseFloat(this.stop1) || 0.4875, '#55BF3B'], // green
+                    [parseFloat(this.stop1) || 0.475, '#55BF3B'], // green
                     [parseFloat(this.stop2) || 0.5, '#DDDF0D'], // yellow
                     [parseFloat(this.stop3) || 0.5, '#DF5353']  // red
                 ]

@@ -77,24 +77,38 @@
         </table>
         <legend style="font-weight: bold;font-size: 18px;"> Gauge Settings </legend>
         <table>
+        <tr>
+            <td>Minimum Value</td>
+            <td><input id="minValue" type="number" step="0.01" value="-2"></td>
+        </tr>
+        <tr>
+            <td>Maximum Value</td>
+            <td><input id="maxValue" type="number" step="0.01" value="2"></td>
+        </tr>
+        </table>
+        <table>
             <tr>
-                <td>Minimum Value</td>
-                <td><input id="minValue" type="number" step="0.01" value="-2"></td>
+                For stop values, calculate 
+                <math display="inline">
+                    <mfrac>
+                        <msup>
+                            <mi>value - min</mi>
+                        </msup>
+                        <mn>max - min</mn>
+                    </mfrac>
+                </math>
+                to normalize value to the gradient range (0 to 1)
             </tr>
             <tr>
-                <td>Maximum Value</td>
-                <td><input id="maxValue" type="number" step="0.01" value="2"></td>
+                <td>Stop 1</td>
+                <td><input id="stop1" type="number" step="0.0001" value="0.475" min="0" max="1"></td>
             </tr>
             <tr>
-                <td>Stop 1 (Low to Mid)</td>
-                <td><input id="stop1" type="number" step="0.0001" value="0.4875" min="0" max="1"></td>
-            </tr>
-            <tr>
-                <td>Stop 2 (Mid to High)</td>
+                <td>Stop 2</td>
                 <td><input id="stop2" type="number" step="0.0001" value="0.5" min="0" max="1"></td>
             </tr>
             <tr>
-                <td>Stop 3 (High to Max)</td>
+                <td>Stop 3</td>
                 <td><input id="stop3" type="number" step="0.0001" value="0.5" min="0" max="1"></td>
             </tr>
             <tr>
