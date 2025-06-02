@@ -88,8 +88,10 @@
         </table>
         <table>
             <tr>
-                For stop values, calculate 
-                <math display="inline">
+                Use the following formula to normalize stops to range [0, 1]:
+            </tr>
+            <tr>
+                <math display="block" style="margin-top: 10px; margin-bottom: 10px;">
                     <mfrac>
                         <msup>
                             <mi>value - min</mi>
@@ -97,7 +99,6 @@
                         <mn>max - min</mn>
                     </mfrac>
                 </math>
-                to normalize value to the gradient range (0 to 1)
             </tr>
             <tr>
                 <td>Stop 1</td>
@@ -143,7 +144,7 @@
                 labelSize: '14px',
                 minValue: -2,
                 maxValue: 2,
-                stop1: 0.4875,
+                stop1: 0.475,
                 stop2: 0.5,
                 stop3: 0.5,
                 targetValue: 0,
