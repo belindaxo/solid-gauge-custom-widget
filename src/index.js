@@ -152,7 +152,7 @@ const parseMetadata = metadata => {
                 } else if (labelFormat === "percentTotal") {
                     const color = '#000000';
                     return `
-                        <span style="color: ${color}">${Highcharts.numberFormat(currentValue * 100, 1)}</span>
+                        <span style="color: ${color}">${Highcharts.numberFormat(currentValue * 100, 1)}%</span>
                     `;
                 }
             }
