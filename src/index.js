@@ -136,7 +136,7 @@ const parseMetadata = metadata => {
         _formatDataLabel(isInverted) {
             return function () {
                 const currentValue = this.y;
-                const color = (currentValue >= 0 && !isInverted) || (currentValue < 0 && isInverted) ? '#55BF3B' : currentValue == 0 ? '#000000' : '#DF5353';
+                const color = (currentValue >= 0 && !isInverted) || (currentValue < 0 && isInverted) ? '#13810F' : currentValue == 0 ? '#000000' : '#DF5353';
                 const deltaSign = currentValue > 0 ? '+' : '';
                 const triangle = currentValue > 0 ? '\u25B2' : currentValue < 0 ? '\u25BC' : '';
                 return `
@@ -155,11 +155,11 @@ const parseMetadata = metadata => {
                 stops = [
                     [parseFloat(this.stop1) || 0.475, '#DF5353'], // red
                     [parseFloat(this.stop2) || 0.5, '#DDDF0D'], // yellow
-                    [parseFloat(this.stop3) || 0.5, '#55BF3B']  // green
+                    [parseFloat(this.stop3) || 0.5, '#13810F']  // green
                 ]
             } else {
                 stops = [
-                    [parseFloat(this.stop1) || 0.475, '#55BF3B'], // green
+                    [parseFloat(this.stop1) || 0.475, '#13810F'], // green
                     [parseFloat(this.stop2) || 0.5, '#DDDF0D'], // yellow
                     [parseFloat(this.stop3) || 0.5, '#DF5353']  // red
                 ]
