@@ -147,7 +147,7 @@ const parseMetadata = metadata => {
                 } else {
                     const color = '#000000';
                     return `
-                        <span style="color: ${color}">${Highcharts.numberFormat(currentValue, 1)}%</span>
+                        <span style="color: ${color}">${Highcharts.numberFormat(currentValue, 1)}</span>
                     `;
                 }
             }
