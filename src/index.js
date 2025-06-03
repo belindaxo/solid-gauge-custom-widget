@@ -96,7 +96,7 @@ const parseMetadata = metadata => {
         static get observedAttributes() {
             return [
                 'chartTitle', 'titleSize', 'titleFontStyle', 'titleAlignment', 'titleColor', 'labelSize',   // Font Properties
-                'isPercentage', 'minValue', 'maxValue', 'stop1', 'stop2', 'stop3', 'targetValue'            // Gauge Properties
+                'labelFormat', 'minValue', 'maxValue', 'stop1', 'stop2', 'stop3', 'targetValue'            // Gauge Properties
             ];
         }
 
@@ -131,23 +131,28 @@ const parseMetadata = metadata => {
         /**
          * Formats the data label for the gauge.
          * @param {boolean} isInverted - Indicates if the gauge is inverted.
-         * @param {boolean} isPercentage - Indicates if the value is a percentage.
+         * @param {string} labelFormat - Indicates if the value is a percentage.
          * @returns {Function} A function to format the data label.
          */
-        _formatDataLabel(isInverted, isPercentage) {
+        _formatDataLabel(isInverted, labelFormat) {
             return function () {
                 const currentValue = this.y;
-                if (isPercentage) {
+                if (labelFormat === "percentChange") {
                     const color = (currentValue >= 0 && !isInverted) || (currentValue < 0 && isInverted) ? '#13810F' : currentValue == 0 ? '#000000' : '#DF5353';
                     const deltaSign = currentValue > 0 ? '+' : '';
                     const triangle = currentValue > 0 ? '\u25B2' : currentValue < 0 ? '\u25BC' : '';
                     return `
                         <span style="color: ${color}">${triangle} ${deltaSign}${Highcharts.numberFormat(currentValue * 100, 1)}%</span>
                     `;
-                } else {
+                } else if (labelFormat === "unformatted") {
                     const color = '#000000';
                     return `
                         <span style="color: ${color}">${Highcharts.numberFormat(currentValue, 1)}</span>
+                    `;
+                } else if (labelFormat === "percentTotal") {
+                    const color = '#000000';
+                    return `
+                        <span style="color: ${color}">${Highcharts.numberFormat(currentValue * 100, 1)}</span>
                     `;
                 }
             }
@@ -203,7 +208,7 @@ const parseMetadata = metadata => {
             // Determine the stops array based on the invertGauge property
             const stops = this._setStops();
             const isInverted = this.invertGauge;
-            const isPercentage = this.isPercentage;
+            const labelFormat = this.labelFormat;
 
             const chartOptions = {
                 chart: {

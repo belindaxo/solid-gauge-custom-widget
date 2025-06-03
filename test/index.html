@@ -199,11 +199,14 @@
                         </tr>
                     </table>
                 </tr>
+                <legend style="font-weight: bold;font-size: 18px;"> Label Format </legend>
                 <tr>
                     <table>
                         <tr>
-                            <td>Data Label Size</td>
-
+                            <td>Size</td>
+                            <td>Label Format</td>
+                        </tr>
+                        <tr>
                             <td>
                                 <select id="labelSize">
                                     <option value="10px">10</option>
@@ -218,11 +221,13 @@
                                     <option value="48px">48</option>
                                 </select>
                             </td>
-                        </tr>
-                        <tr>
                             <td>
-                                <input id="isPercentage" type="checkbox" checked>
-                                <label for="isPercentage">Show as percentage</label>
+                                <select id="labelFormat">
+                                    <option value="percentChange" selected>Percent (Change)</option>
+                                    <option value="percentTotal">Percent (Total)</option>
+                                    <option value="unformatted">Unformatted</option>
+
+                                </select>
                             </td>
                         </tr>
                     </table>

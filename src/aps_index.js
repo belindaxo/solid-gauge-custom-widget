@@ -52,11 +52,14 @@
                     </tr>
                 </table>
             </tr>
+            <legend style="font-weight: bold;font-size: 18px;"> Label Format </legend>
             <tr>
                 <table>
                     <tr>
-                        <td>Data Label Size</td>
-
+                        <td>Size</td>
+                        <td>Label Format</td>
+                    </tr>
+                    <tr>
                         <td>
                             <select id="labelSize">
                                 <option value="10px">10</option>
@@ -71,11 +74,12 @@
                                 <option value="48px">48</option>
                             </select>
                         </td>
-                    </tr>
-                    <tr>
                         <td>
-                            <input id="isPercentage" type="checkbox" checked>
-                            <label for="isPercentage">Show as percentage</label>
+                            <select id="labelFormat">
+                                <option value="percentChange" selected>Percent (Change)</option>
+                                <option value="percentTotal">Percent (Total)</option>
+                                <option value="unformatted">Unformatted</option>
+                            </select>
                         </td>
                     </tr>
                 </table>
@@ -148,7 +152,7 @@
                 titleColor: '#004b8d',
                 chartSubtitle: '',
                 labelSize: '14px',
-                isPercentage: true,
+                labelFormat: 'percentChange',
                 minValue: -2,
                 maxValue: 2,
                 stop1: 0.475,
@@ -166,7 +170,7 @@
             this._shadowRoot.getElementById('titleAlignment').addEventListener('change', this._submit.bind(this));
             this._shadowRoot.getElementById('titleColor').addEventListener('change', this._submit.bind(this));
             this._shadowRoot.getElementById('labelSize').addEventListener('change', this._submit.bind(this));
-            this._shadowRoot.getElementById('isPercentage').addEventListener('change', this._submit.bind(this));
+            this._shadowRoot.getElementById('labelFormat').addEventListener('change', this._submit.bind(this));
             this._shadowRoot.getElementById('minValue').addEventListener('change', this._submit.bind(this));
             this._shadowRoot.getElementById('maxValue').addEventListener('change', this._submit.bind(this));
             this._shadowRoot.getElementById('stop1').addEventListener('change', this._submit.bind(this));
@@ -207,7 +211,7 @@
                         titleAlignment: this.titleAlignment,
                         titleColor: this.titleColor,
                         labelSize: this.labelSize,
-                        isPercentage: this.isPercentage,
+                        labelFormat: this.labelFormat,
                         minValue: this.minValue,
                         maxValue: this.maxValue,
                         stop1: this.stop1,
@@ -268,12 +272,12 @@
             this._shadowRoot.getElementById('labelSize').value = value;
         }
 
-        get isPercentage() {
-            return this._shadowRoot.getElementById('isPercentage').checked;
+        get labelFormat() {
+            return this._shadowRoot.getElementById('labelFormat').value;
         }
 
-        set isPercentage(value) {
-            this._shadowRoot.getElementById('isPercentage').checked = value;
+        set labelFormat(value) {
+            this._shadowRoot.getElementById('labelFormat').value = value;
         }
 
         get minValue() {
