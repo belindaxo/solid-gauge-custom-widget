@@ -147,7 +147,7 @@ const parseMetadata = metadata => {
                 } else if (labelFormat === "unformatted") {
                     const color = '#000000';
                     return `
-                        <span style="color: ${color}">${Highcharts.numberFormat(currentValue, 1)}</span>
+                        <span style="color: ${color}">${Highcharts.numberFormat(currentValue, 2)}</span>
                     `;
                 } else if (labelFormat === "percentTotal") {
                     const color = '#000000';
