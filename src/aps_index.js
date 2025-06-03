@@ -72,6 +72,12 @@
                             </select>
                         </td>
                     </tr>
+                    <tr>
+                        <td>
+                            <input id="isPercentage" type="checkbox" checked>
+                            <label for="isPercentage">Show as percentage</label>
+                        </td>
+                    </tr>
                 </table>
             </tr> 
         </table>
@@ -142,6 +148,7 @@
                 titleColor: '#004b8d',
                 chartSubtitle: '',
                 labelSize: '14px',
+                isPercentage: true,
                 minValue: -2,
                 maxValue: 2,
                 stop1: 0.475,
@@ -159,6 +166,7 @@
             this._shadowRoot.getElementById('titleAlignment').addEventListener('change', this._submit.bind(this));
             this._shadowRoot.getElementById('titleColor').addEventListener('change', this._submit.bind(this));
             this._shadowRoot.getElementById('labelSize').addEventListener('change', this._submit.bind(this));
+            this._shadowRoot.getElementById('isPercentage').addEventListener('change', this._submit.bind(this));
             this._shadowRoot.getElementById('minValue').addEventListener('change', this._submit.bind(this));
             this._shadowRoot.getElementById('maxValue').addEventListener('change', this._submit.bind(this));
             this._shadowRoot.getElementById('stop1').addEventListener('change', this._submit.bind(this));
@@ -199,6 +207,7 @@
                         titleAlignment: this.titleAlignment,
                         titleColor: this.titleColor,
                         labelSize: this.labelSize,
+                        isPercentage: this.isPercentage,
                         minValue: this.minValue,
                         maxValue: this.maxValue,
                         stop1: this.stop1,
@@ -257,6 +266,14 @@
 
         set labelSize(value) {
             this._shadowRoot.getElementById('labelSize').value = value;
+        }
+
+        get isPercentage() {
+            return this._shadowRoot.getElementById('isPercentage').checked;
+        }
+
+        set isPercentage(value) {
+            this._shadowRoot.getElementById('isPercentage').checked = value;
         }
 
         get minValue() {

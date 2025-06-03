@@ -13,14 +13,14 @@
             "tag": "com-sap-sample-solidgauge",
             "url": "https://belindaxo.github.io/solid-gauge-custom-widget/dist/bundle.js",
             "integrity": "sha256-vtBjAynXpvPToUwIgaHly+LRCltMRAXSac/htVQhw6o=",
-            "ignoreIntegrity": false
+            "ignoreIntegrity": true
         },
         {
             "kind": "styling",
             "tag": "com-sap-sample-solidgauge-aps",
             "url": "https://belindaxo.github.io/solid-gauge-custom-widget/dist/bundle.js",
             "integrity": "sha256-vtBjAynXpvPToUwIgaHly+LRCltMRAXSac/htVQhw6o=",
-            "ignoreIntegrity": false
+            "ignoreIntegrity": true
         }
     ],
     "properties": {
@@ -61,6 +61,11 @@
             "type": "string",
             "description": "The font size of the data label",
             "default": "14px"   
+        },
+        "isPercentage": {
+            "type": "boolean",
+            "description": "Whether the gauge displays values as percentages",
+            "default": true
         },
         "minValue": {
             "type": "number",
