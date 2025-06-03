@@ -131,7 +131,7 @@ const parseMetadata = metadata => {
         /**
          * Formats the data label for the gauge.
          * @param {boolean} isInverted - Indicates if the gauge is inverted.
-         * @param {string} labelFormat - Indicates if the value is a percentage.
+         * @param {string} labelFormat - The format of the label ('percentChange', 'unformatted', or 'percentTotal').
          * @returns {Function} A function to format the data label.
          */
         _formatDataLabel(isInverted, labelFormat) {
@@ -280,7 +280,7 @@ const parseMetadata = metadata => {
                             style: {
                                 fontSize: this.labelSize || "14px"
                             },
-                            formatter: this._formatDataLabel(isInverted, isPercentage),
+                            formatter: this._formatDataLabel(isInverted, labelFormat),
                         }
                     }
                 },
