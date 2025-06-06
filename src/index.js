@@ -249,8 +249,8 @@ const parseMetadata = metadata => {
                     enabled: false
                 },
                 yAxis: {
-                    min: parseFloat(this.minValue) || -2,
-                    max: parseFloat(this.maxValue) || 2,
+                    min: parseFloat(this.minValue),
+                    max: parseFloat(this.maxValue),
                     stops,
                     lineWidth: 0,
                     tickWidth: 0,
@@ -263,7 +263,7 @@ const parseMetadata = metadata => {
                         enabled: false
                     },
                     plotLines: [{
-                        value: parseFloat(this.targetValue) || 0, //target value
+                        value: parseFloat(this.targetValue), //target value
                         color: '#000000',
                         width: 2,
                         zIndex: 5, //ensure it's on top of the gauge
