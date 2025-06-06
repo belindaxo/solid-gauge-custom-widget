@@ -166,7 +166,7 @@ const parseMetadata = metadata => {
             let stops = [];
             if (!this.invertGauge) {
                 stops = [
-                    [parseFloat(this.stop1), '#D5353'], // red
+                    [parseFloat(this.stop1), '#DF5353'], // red
                     [parseFloat(this.stop2), '#DDDF0D'], // yellow
                     [parseFloat(this.stop3), '#13810F']  // green
                 ]
