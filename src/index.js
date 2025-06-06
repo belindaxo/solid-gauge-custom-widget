@@ -159,15 +159,15 @@ const parseMetadata = metadata => {
         }
 
         /**
-         * Sets the stops for the gauge color gradient based on the invertGauge property.
+         * Sets the stops for the gauge color gradient.
          * @returns {Array} Stops for the gauge color gradient.
          */
         _setStops() {
             let stops = [];
             stops = [
-                [parseFloat(this.stop1)], // red
-                [parseFloat(this.stop2)], // yellow
-                [parseFloat(this.stop3)]  // green
+                [parseFloat(this.stop1)], 
+                [parseFloat(this.stop2)], 
+                [parseFloat(this.stop3)]  
             ]
             return stops;
         }
