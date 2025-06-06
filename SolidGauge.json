@@ -12,15 +12,15 @@
             "kind": "main",
             "tag": "com-sap-sample-solidgauge",
             "url": "https://belindaxo.github.io/solid-gauge-custom-widget/dist/bundle.js",
-            "integrity": "sha256-w5NkH+r3qLDFhTTUqwlnnpBpirCh6QBGum8zGQnluQI=",
-            "ignoreIntegrity": true
+            "integrity": "sha256-FaUqijfZxPQNuA6avyOZD4TuvvqfcvvV5oJ8AB4MgI4=",
+            "ignoreIntegrity": false
         },
         {
             "kind": "styling",
             "tag": "com-sap-sample-solidgauge-aps",
             "url": "https://belindaxo.github.io/solid-gauge-custom-widget/dist/bundle.js",
-            "integrity": "sha256-w5NkH+r3qLDFhTTUqwlnnpBpirCh6QBGum8zGQnluQI=",
-            "ignoreIntegrity": true
+            "integrity": "sha256-FaUqijfZxPQNuA6avyOZD4TuvvqfcvvV5oJ8AB4MgI4=",
+            "ignoreIntegrity": false
         }
     ],
     "properties": {
