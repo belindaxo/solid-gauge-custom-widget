@@ -95,8 +95,8 @@ const parseMetadata = metadata => {
          */
         static get observedAttributes() {
             return [
-                'chartTitle', 'titleSize', 'titleFontStyle', 'titleAlignment', 'titleColor', 'labelSize',   // Font Properties
-                'labelFormat', 'minValue', 'maxValue', 'stop1', 'stop2', 'stop3', 'targetValue'            // Gauge Properties
+                'chartTitle', 'titleSize', 'titleFontStyle', 'titleAlignment', 'titleColor', 'labelSize',       // Font Properties
+                'labelFormat', 'minValue', 'maxValue', 'stop1', 'stop2', 'stop3', 'targetValue', 'invertGauge'  // Gauge Properties
             ];
         }
 
