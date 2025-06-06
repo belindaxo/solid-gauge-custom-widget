@@ -1,4 +1,4 @@
-(function() {
+(function () {
     let template = document.createElement('template');
     template.innerHTML = `
         <form id="form">
@@ -138,7 +138,7 @@
         </tr>
         <input type="submit" style="display:none;">
         </form>
-    `; 
+    `;
 
     class SolidGaugeAps extends HTMLElement {
         constructor() {
@@ -159,7 +159,7 @@
                 stop2: 0.5,
                 stop3: 0.5,
                 targetValue: 0,
-                invertGauge: false    
+                invertGauge: false
             }
 
             this._shadowRoot = this.attachShadow({ mode: 'open' });
@@ -177,7 +177,38 @@
             this._shadowRoot.getElementById('stop2').addEventListener('change', this._submit.bind(this));
             this._shadowRoot.getElementById('stop3').addEventListener('change', this._submit.bind(this));
             this._shadowRoot.getElementById('targetValue').addEventListener('change', this._submit.bind(this));
-            this._shadowRoot.getElementById('invertGauge').addEventListener('change', this._submit.bind(this));
+            this._shadowRoot.getElementById('invertGauge').addEventListener('change', () => {
+                const min = parseFloat(this._shadowRoot.getElementById('minValue').value);
+                const max = parseFloat(this._shadowRoot.getElementById('maxValue').value);
+
+                const stop1Input = this._shadowRoot.getElementById('stop1');
+                const stop2Input = this._shadowRoot.getElementById('stop2');
+                const stop3Input = this._shadowRoot.getElementById('stop3');
+
+                const isInverted = this._shadowRoot.getElementById('invertGauge').checked;
+
+                if (isInverted) {
+                    // Inverted: Green <= 0%, Yellow 0–10%, Red >10%
+                    const stop1 = (0 - min) / (max - min);     // 0 → 0.5
+                    const stop2 = stop1;                       // 0 → 0.5
+                    const stop3 = (0.1 - min) / (max - min);   // 0.1 → 0.525
+
+                    stop1Input.value = stop1;
+                    stop2Input.value = stop2;
+                    stop3Input.value = stop3;
+                } else {
+                    // Normal (non-inverted) stops: Red < -10%, Yellow -10%–0%, Green >= 0%
+                    const stop1 = (-0.1 - min) / (max - min);  // -0.1 → 0.475
+                    const stop2 = (0 - min) / (max - min);     // 0 → 0.5
+                    const stop3 = stop2;                       // 0 → 0.5
+
+                    stop1Input.value = stop1;
+                    stop2Input.value = stop2;
+                    stop3Input.value = stop3;
+                }
+
+                this._submit(new Event('submit'));
+            });
 
             // Reset button logic
             this._shadowRoot.getElementById('resetDefaults').addEventListener('click', () => {

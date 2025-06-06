@@ -49,7 +49,7 @@
 
             _renderChart() {
                 const container = this.shadowRoot.querySelector('#container');
-                const currentValue = -0.05;
+                const currentValue = 0.;
                 const referenceValue = 0;
                 const targetValue = 0;
 
@@ -93,9 +93,9 @@
                         min: -2,
                         max: 2,
                         stops: [
-                            [0.4875, '#DF5353'],   // red up to -5%
-                            [0.5, '#DDDF0D'],      // yellow from -5% to 0%
-                            [0.5, '#55BF3B']       // green from 0% and above
+                            [0.5, '#13810F'], // green
+                            [0.5, '#DDDF0D'], // yellow
+                            [0.525, '#DF5353']  // red
                         ],
                         lineWidth: 0,
                         tickWidth: 0,

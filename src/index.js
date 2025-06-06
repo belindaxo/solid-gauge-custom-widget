@@ -172,9 +172,9 @@ const parseMetadata = metadata => {
                 ]
             } else {
                 stops = [
-                    [parseFloat(this.stop1) || 0.475, '#13810F'], // green
+                    [parseFloat(this.stop1) || 0.5, '#13810F'], // green
                     [parseFloat(this.stop2) || 0.5, '#DDDF0D'], // yellow
-                    [parseFloat(this.stop3) || 0.5, '#DF5353']  // red
+                    [parseFloat(this.stop3) || 0.525, '#DF5353']  // red
                 ]
             }
             return stops;
