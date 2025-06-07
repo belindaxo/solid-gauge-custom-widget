@@ -13,14 +13,14 @@
             "tag": "com-sap-sample-solidgauge",
             "url": "https://belindaxo.github.io/solid-gauge-custom-widget/dist/bundle.js",
             "integrity": "sha256-B5Mshv48n2oLvct2lJYpScGT39kE/2HaRdBeo5NfeTk=",
-            "ignoreIntegrity": true
+            "ignoreIntegrity": false
         },
         {
             "kind": "styling",
             "tag": "com-sap-sample-solidgauge-aps",
             "url": "https://belindaxo.github.io/solid-gauge-custom-widget/dist/bundle.js",
             "integrity": "sha256-B5Mshv48n2oLvct2lJYpScGT39kE/2HaRdBeo5NfeTk=",
-            "ignoreIntegrity": true
+            "ignoreIntegrity": false
         }
     ],
     "properties": {
