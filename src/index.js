@@ -174,7 +174,7 @@ const parseMetadata = metadata => {
                 stops = [
                     [parseFloat(this.stop1), '#13810F'], // green
                     [parseFloat(this.stop2), '#DDDF0D'], // yellow
-                    [parseFloat(this.stop3), '#D5353']   // red
+                    [parseFloat(this.stop3), '#DF5353']   // red
                 ]
             }
             return stops;
