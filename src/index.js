@@ -95,8 +95,9 @@ const parseMetadata = metadata => {
          */
         static get observedAttributes() {
             return [
-                'chartTitle', 'titleSize', 'titleFontStyle', 'titleAlignment', 'titleColor', 'labelSize',       // Font Properties
-                'labelFormat', 'minValue', 'maxValue', 'stop1', 'stop2', 'stop3', 'targetValue', 'invertGauge'  // Gauge Properties
+                'chartTitle', 'titleSize', 'titleFontStyle', 'titleAlignment', 'titleColor',    // Font Properties
+                'showLabel', 'labelSize', 'labelFormat',                                        // Label Properties
+                'minValue', 'maxValue', 'stop1', 'stop2', 'stop3', 'targetValue', 'invertGauge' // Gauge Properties
             ];
         }
 
@@ -274,6 +275,7 @@ const parseMetadata = metadata => {
                     solidgauge: {
                         borderRadius: 3,
                         dataLabels: {
+                            enabled: this.showLabel,
                             y: 10,
                             borderWidth: 0,
                             useHTML: true,

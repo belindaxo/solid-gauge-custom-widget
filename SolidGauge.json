@@ -13,14 +13,14 @@
             "tag": "com-sap-sample-solidgauge",
             "url": "https://belindaxo.github.io/solid-gauge-custom-widget/dist/bundle.js",
             "integrity": "sha256-B5Mshv48n2oLvct2lJYpScGT39kE/2HaRdBeo5NfeTk=",
-            "ignoreIntegrity": false
+            "ignoreIntegrity": true
         },
         {
             "kind": "styling",
             "tag": "com-sap-sample-solidgauge-aps",
             "url": "https://belindaxo.github.io/solid-gauge-custom-widget/dist/bundle.js",
             "integrity": "sha256-B5Mshv48n2oLvct2lJYpScGT39kE/2HaRdBeo5NfeTk=",
-            "ignoreIntegrity": false
+            "ignoreIntegrity": true
         }
     ],
     "properties": {
@@ -56,6 +56,11 @@
             "type": "string",
             "description": "The color of the title text",
             "default": "#004B8D"
+        },
+        "showLabel": {
+            "type": "boolean",
+            "description": "Whether to show the data label on the gauge",
+            "default": true
         },
         "labelSize": {
             "type": "string",

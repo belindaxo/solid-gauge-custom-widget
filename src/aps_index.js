@@ -54,6 +54,12 @@
             </tr>
             <legend style="font-weight: bold;font-size: 18px;"> Label Format </legend>
             <tr>
+                <td>
+                    <input id="showLabel" type="checkbox"checked>
+                    <label for="showLabel">Show Label</label>
+                </td>
+            </tr>
+            <tr>
                 <table>
                     <tr>
                         <td>Size</td>
@@ -151,6 +157,7 @@
                 titleAlignment: 'left',
                 titleColor: '#004b8d',
                 chartSubtitle: '',
+                showLabel: true,
                 labelSize: '14px',
                 labelFormat: 'percentChange',
                 minValue: -2,
@@ -169,6 +176,7 @@
             this._shadowRoot.getElementById('titleFontStyle').addEventListener('change', this._submit.bind(this));
             this._shadowRoot.getElementById('titleAlignment').addEventListener('change', this._submit.bind(this));
             this._shadowRoot.getElementById('titleColor').addEventListener('change', this._submit.bind(this));
+            this._shadowRoot.getElementById('showLabel').addEventListener('change', this._submit.bind(this));
             this._shadowRoot.getElementById('labelSize').addEventListener('change', this._submit.bind(this));
             this._shadowRoot.getElementById('labelFormat').addEventListener('change', this._submit.bind(this));
             this._shadowRoot.getElementById('minValue').addEventListener('change', this._submit.bind(this));
@@ -238,6 +246,7 @@
                         titleFontStyle: this.titleFontStyle,
                         titleAlignment: this.titleAlignment,
                         titleColor: this.titleColor,
+                        showLabel: this.showLabel,
                         labelSize: this.labelSize,
                         labelFormat: this.labelFormat,
                         minValue: this.minValue,
@@ -290,6 +299,14 @@
 
         set titleColor(value) {
             this._shadowRoot.getElementById('titleColor').value = value;
+        }
+
+        get showLabel() {
+            return this._shadowRoot.getElementById('showLabel').checked;
+        }
+
+        set showLabel(value) {
+            this._shadowRoot.getElementById('showLabel').checked = value;
         }
 
         get labelSize() {
