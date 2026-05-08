@@ -6,6 +6,7 @@
     "license": "",
     "id": "com.sap.sample.solidgauge",
     "newInstancePrefix": "SolidGauge",
+    "supportsMobile": true,
     "version": "1.0.0",
     "webcomponents": [
         {
